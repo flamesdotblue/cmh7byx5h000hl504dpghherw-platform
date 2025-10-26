@@ -11,6 +11,7 @@ const Hero = () => {
   const paraY = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const ctaY = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const vignette = useTransform(scrollYProgress, [0, 1], [0.7, 0.85]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 1], [0.35, 0.15]);
 
   return (
     <section ref={ref} className="relative h-[92vh] md:h-screen w-full overflow-hidden" id="home">
@@ -23,7 +24,13 @@ const Hero = () => {
 
       <motion.div 
         className="pointer-events-none absolute inset-0 z-10" 
-        style={{ background: 'radial-gradient(80% 80% at 50% 30%, rgba(0,0,0,0.25), rgba(0,0,0,0.75))', opacity: vignette }}
+        style={{ background: 'radial-gradient(80% 80% at 50% 30%, rgba(0,0,0,0.2), rgba(0,0,0,0.8))', opacity: vignette }}
+      />
+
+      <motion.div 
+        aria-hidden
+        className="pointer-events-none absolute -top-24 left-1/2 z-10 h-72 w-[120vw] -translate-x-1/2 rounded-full blur-3xl"
+        style={{ background: 'radial-gradient(50% 50% at 50% 50%, var(--accent-weak), transparent 60%)', opacity: glowOpacity }}
       />
 
       <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 text-center">
@@ -47,12 +54,13 @@ const Hero = () => {
           </motion.p>
 
           <motion.div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row" style={{ y: ctaY }}>
-            <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
+            <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:translate-y-[-1px] hover:bg-neutral-200 active:translate-y-[0px]">
               Let’s Create Something Remarkable
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
-            <a href="#work" className="inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-black/40 px-6 py-3 text-sm font-medium text-neutral-200 backdrop-blur transition hover:border-neutral-500 hover:text-white">
+            <a href="#work" className="group inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-black/40 px-6 py-3 text-sm font-medium text-neutral-200 backdrop-blur transition hover:border-neutral-500 hover:text-white hover:translate-y-[-1px] active:translate-y-[0px]">
               View Our Work
+              <span className="ml-1 h-1.5 w-1.5 rounded-full" style={{ backgroundColor: 'rgb(var(--accent))' }} />
             </a>
           </motion.div>
         </motion.div>
