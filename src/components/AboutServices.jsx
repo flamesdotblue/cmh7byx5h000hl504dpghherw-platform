@@ -36,16 +36,16 @@ const AboutServices = () => {
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">About Serene Designs</h2>
           <p className="mt-4 text-neutral-300 md:text-lg">
-            Serene Designs is a premium creative studio crafting brands and digital products that resonate. Our process blends strategy, design, and development to deliver elegant solutions with measurable impact.
+            A premium creative studio shaping brands and digital products for tomorrow. We blend strategy, minimalist design, and modern engineering to produce experiences that feel effortless and future-ready.
           </p>
           <div className="mt-6 grid grid-cols-2 gap-4 text-sm text-neutral-300/90">
             <div className="rounded-xl border border-neutral-800/80 p-4">
               <p className="font-medium text-white">Strategy-Led</p>
-              <p className="mt-1 text-neutral-400">Research, positioning, and clarity before pixels.</p>
+              <p className="mt-1 text-neutral-400">Positioning, clarity, and measurable outcomes.</p>
             </div>
             <div className="rounded-xl border border-neutral-800/80 p-4">
               <p className="font-medium text-white">Design-Obsessed</p>
-              <p className="mt-1 text-neutral-400">Refined, minimal, and intentional interfaces.</p>
+              <p className="mt-1 text-neutral-400">Intentional, minimal, and elegant systems.</p>
             </div>
             <div className="rounded-xl border border-neutral-800/80 p-4">
               <p className="font-medium text-white">Tech-Driven</p>
@@ -53,7 +53,7 @@ const AboutServices = () => {
             </div>
             <div className="rounded-xl border border-neutral-800/80 p-4">
               <p className="font-medium text-white">Collaborative</p>
-              <p className="mt-1 text-neutral-400">Transparent communication and agile delivery.</p>
+              <p className="mt-1 text-neutral-400">Transparent, agile, and outcome-focused.</p>
             </div>
           </div>
         </motion.div>
@@ -65,24 +65,24 @@ const AboutServices = () => {
             <ServiceCard 
               icon={Palette} 
               title="Branding & Visual Identity" 
-              desc="Distinctive brand systems that communicate your essence."
+              desc="Distinctive, timeless brand systems that communicate your essence."
               items={["Logo & Identity Systems","Art Direction","Brand Guidelines","Collateral Design"]}
             />
             <ServiceCard 
               icon={Share2} 
               title="Social Media Design & Management" 
-              desc="Cohesive content that captivates and converts across platforms."
+              desc="Cohesive, on-brand content that captivates and converts across platforms."
               items={["Content Strategy","Design Templates","Campaign Creative","Analytics & Optimization"]}
             />
             <ServiceCard 
               icon={Code} 
               title="Website & App Development" 
-              desc="Elegant, fast, and accessible digital products built for growth."
+              desc="Elegant, fast, and accessible digital products engineered for growth."
               items={["Design to Code","Web Apps & Sites","eCommerce","Performance & SEO"]}
             />
             <motion.div className="rounded-2xl border border-neutral-800 p-6">
               <p className="text-sm text-neutral-300">
-                Every engagement begins with a discovery call to align on goals, audience, and success metrics. From there, we move into iterative design and development sprints.
+                Every engagement begins with a discovery call to align on goals, audience, scope, and success metrics. Then we move into iterative design and development sprints.
               </p>
               <a href="#contact" className="mt-4 inline-block rounded-full border border-neutral-700 px-4 py-2 text-sm text-neutral-200 transition hover:border-neutral-500 hover:text-white">Book a Discovery Call</a>
             </motion.div>

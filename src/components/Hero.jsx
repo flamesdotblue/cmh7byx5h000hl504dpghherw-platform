@@ -1,11 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Spline from '@splinetool/react-spline';
-import { ArrowRight, Rocket } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const paraY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const ctaY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const vignette = useTransform(scrollYProgress, [0, 1], [0.7, 0.85]);
+
   return (
-    <section className="relative h-[90vh] md:h-screen w-full overflow-hidden" id="home">
+    <section ref={ref} className="relative h-[92vh] md:h-screen w-full overflow-hidden" id="home">
       <div className="absolute inset-0 z-0">
         <Spline 
           scene="https://prod.spline.design/Gt5HUob8aGDxOUep/scene.splinecode" 
@@ -13,7 +21,10 @@ const Hero = () => {
         />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
+      <motion.div 
+        className="pointer-events-none absolute inset-0 z-10" 
+        style={{ background: 'radial-gradient(80% 80% at 50% 30%, rgba(0,0,0,0.25), rgba(0,0,0,0.75))', opacity: vignette }}
+      />
 
       <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 text-center">
         <motion.div 
@@ -22,19 +33,20 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800/70 bg-black/30 px-4 py-2 backdrop-blur">
-            <Rocket className="h-4 w-4 text-emerald-400/80" />
-            <span className="text-xs tracking-widest text-neutral-300">SERENE DESIGNS</span>
-          </div>
+          <motion.h1 
+            className="text-balance text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl"
+            style={{ y: titleY }}
+          >
+            Sleek, Modern, Futuristic Experiences
+          </motion.h1>
+          <motion.p 
+            className="mx-auto max-w-3xl text-pretty text-neutral-300 md:text-lg"
+            style={{ y: paraY }}
+          >
+            We merge aesthetic minimalism with cutting-edge engineering to shape brands, social systems, and high-performance digital products.
+          </motion.p>
 
-          <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
-            Premium Branding & Digital Experiences
-          </h1>
-          <p className="mx-auto max-w-3xl text-pretty text-neutral-300 md:text-lg">
-            We merge aesthetics with functionality to craft distinctive brands, striking social content, and performant websites and apps.
-          </p>
-
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <motion.div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row" style={{ y: ctaY }}>
             <a href="#contact" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-200">
               Let’s Create Something Remarkable
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -42,9 +54,15 @@ const Hero = () => {
             <a href="#work" className="inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-black/40 px-6 py-3 text-sm font-medium text-neutral-200 backdrop-blur transition hover:border-neutral-500 hover:text-white">
               View Our Work
             </a>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
+
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent"
+        style={{ opacity: useTransform(scrollYProgress, [0, 1], [0.8, 0.2]) }}
+      />
     </section>
   );
 };
